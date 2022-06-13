@@ -134,4 +134,12 @@ public class ShapeModel {
      *  Hint: the destination is a NestingShape
      */
 
+    public void change(Shape shape, NestingShape newParent){
+        remove(shape);
+        if(newParent != null){
+            add(shape, newParent);
+        }
+
+    }
+
 }
