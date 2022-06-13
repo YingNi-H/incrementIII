@@ -32,7 +32,6 @@ public class Task2 extends Task1 implements ShapeModelListener {
 
         TreeModelEvent treeModelEvent = new TreeModelEvent(adaptee2, event.operand().path().toArray());
 
-//        , childIndices, event.operand()
 
         for (TreeModelListener l : treeListeners) {
             if(event.eventType() == ShapeModelEvent.EventType.ShapeAdded ){
