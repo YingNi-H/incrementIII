@@ -18,8 +18,8 @@ import java.util.List;
 public class Task1 implements TreeModel {
 
     private ShapeModel treeAdaptee;
-    private NestingShape nestingShape;
-    private List<TreeModelListener> treeListeners;
+    NestingShape nestingShape;
+    List<TreeModelListener> treeListeners;
 //    private Dimension bounds;
 
 
