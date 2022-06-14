@@ -30,6 +30,8 @@ public class Task2 extends Task1 implements ShapeModelListener {
         if(event.eventType() == ShapeModelEvent.EventType.ShapeMoved){
             return;
         }
+
+
         int[] childIndices = new int[1];
         childIndices[0] = event.index();
         Object[] child = new Object[]{event.operand()};
