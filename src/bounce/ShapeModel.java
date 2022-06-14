@@ -135,9 +135,15 @@ public class ShapeModel {
      */
 
     public void change(Shape shape, NestingShape newParent){
-        remove(shape);
-        if(newParent != null){
+
+        if(shape != this.root() ){
+            remove(shape);
+            if( shape.x >= newParent.x && shape.y >= newParent.y &&
+                shape.x + shape.width <= newParent.x + newParent.width &&
+                shape.y + shape.height <= newParent.y + newParent.height &&
+                !newParent.contains(shape)){
             add(shape, newParent);
+            }
         }
 
     }

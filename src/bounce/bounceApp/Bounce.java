@@ -210,6 +210,24 @@ public class Bounce extends JPanel {
         cutPasteShape.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+//                Shape cutAndPaste = shapeToPaste;
+//                Shape selection = shapeSelected;
+                NestingShape newParent = model.root();
+
+                if(newParent == null){
+                    model.remove(shapeSelected);
+                    if(!newParent.contains(shapeSelected)){
+                        cutPasteShape = new JButton("Paste");
+                        shapeToPaste = shapeSelected;
+                        model.add(shapeToPaste, newParent);
+
+//                    treeView.setSelectionPath(new TreePath(newParent.path().toArray()));
+                        shapeToPaste = null;
+                        cutPasteShape = new JButton("Cut");
+                    }
+                }
+
+
 
             }
         });
@@ -226,6 +244,7 @@ public class Bounce extends JPanel {
             public void valueChanged(TreeSelectionEvent e) {
                 TreePath selectionPath = treeView.getSelectionPath();
                 shapeSelected = (Shape) selectionPath.getLastPathComponent();
+
 
                 /*
                  * Enable button newShape only if what is selected in the
@@ -246,6 +265,12 @@ public class Bounce extends JPanel {
                  * TODO Enable button cutPasteShape only if what is selected
                  *  in the JTree can be cut or pasted
                  */
+                NestingShape paste = model.root();
+                cutPasteShape.setEnabled(shapeSelected != paste ||
+                        shapeSelected.parent() != paste &&
+                        shapeSelected.x() >= paste.x() && shapeSelected.y() >= paste.y() &&
+                        shapeSelected.x() + shapeSelected.width() <= paste.x() + paste.width() &&
+                        shapeSelected.y() +shapeSelected.height() <= paste.y() + paste.height());
 
 
                 /*
