@@ -27,10 +27,10 @@ public class Task2 extends Task1 implements ShapeModelListener {
 
     @Override
     public void update(ShapeModelEvent event) {
-        int[] childIndices = new int[1];
-        childIndices[0] = event.index();
+//        int[] childIndices = new int[1];
+//        childIndices[0] = event.index();
 
-        TreeModelEvent treeModelEvent = new TreeModelEvent(adaptee2, event.operand().path().toArray());
+        TreeModelEvent treeModelEvent = new TreeModelEvent(event.operand(), event.operand().path().toArray());
 
 
         for (TreeModelListener l : treeListeners) {
@@ -40,9 +40,6 @@ public class Task2 extends Task1 implements ShapeModelListener {
             }else if(event.eventType() == ShapeModelEvent.EventType.ShapeRemoved){
                 l.treeNodesRemoved(treeModelEvent);
             }
-
-
-
 
         }
 
