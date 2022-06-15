@@ -212,6 +212,7 @@ public class Bounce extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Shape cutPaste = shapeToPaste;
                 Shape selection = shapeSelected;
+//                NestingShape newParent = (NestingShape) shapeSelected;
                 NestingShape root = model.root();
                 boolean isCut = false;
 
@@ -222,23 +223,26 @@ public class Bounce extends JPanel {
 //                int index = 4;
 //                NestingShape newParent = (NestingShape)root.shapeAt(index);
 
-                NestingShape newParent = new NestingShape(getX(), getY(), 0, 0, getWidth(), getHeight());
-
+//                NestingShape newParent = new NestingShape(getX(), getY(), 0, 0, getWidth(), getHeight());
 
 
                 if(selection != root){
                     treeView.setSelectionPath(new TreePath(selection.parent().path().toArray()));
                     cutPaste = selection;
                     model.remove(selection);
-                    cutPasteShape.setText("AsDelete");
+//                    cutPasteShape.getText() == "Cut";
+//                    selection = newParent;
+                    cutPasteShape.setText("Paste");
+
+
                     isCut = true;
 
 //!newParent.path().contains(toPaste)  &&
-                    if( cutPaste.x() < newParent.x() && cutPaste.y() < newParent.y()){
-                        cutPasteShape.setText("Paste");
-                        model.add(cutPaste, newParent);
-//                        same as below
-//                        newParent.add(cutPaste);
+//                    if(  cutPaste.x() < newParent.x() && cutPaste.y() < newParent.y()){
+                        if(  selection instanceof NestingShape && cutPaste.x() < selection.x() && cutPaste.y() < selection.y()){
+
+                        model.add(cutPaste, (NestingShape) selection);
+
 
                     }
 
@@ -248,6 +252,8 @@ public class Bounce extends JPanel {
                 cutPaste = null;
                 cutPasteShape.setText("Cut");
                 isCut = false;
+
+
 
 
 
@@ -289,16 +295,21 @@ public class Bounce extends JPanel {
                  */
                 NestingShape root = model.root();
 
-                int index = 0;
+//                int index = 0;
 //                NestingShape destination = (NestingShape) selectionPath.getPathComponent(index);
 
-                NestingShape destination = new NestingShape(getX(),getY(),0,0, getWidth(), getHeight());
-                cutPasteShape.setEnabled(shapeSelected != root);
+//                NestingShape destination = new NestingShape(getX(),getY(),0,0, getWidth(), getHeight());
+//                NestingShape destination = (NestingShape)shapeSelected;
+
+                cutPasteShape.setEnabled(shapeSelected != root );
+//                shapeToPaste = shapeSelected;
+
                 if(cutPasteShape.isSelected()){
 
+
 //!destination.path().contains(shapeSelected) &&
-                    cutPasteShape.setEnabled(
-                            shapeSelected.width() < destination.width() && shapeSelected.height() < destination.height());
+                    cutPasteShape.setEnabled(shapeSelected instanceof NestingShape);
+//                            shapeSelected.width() < destination.width() && shapeSelected.height() < destination.height());
                 }
 //
 
