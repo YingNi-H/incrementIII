@@ -213,6 +213,8 @@ public class Bounce extends JPanel {
                 Shape cutPaste = shapeToPaste;
                 Shape selection = shapeSelected;
                 NestingShape root = model.root();
+                boolean isCut = false;
+
 //                TreePath selectionPath = treeView.getSelectionPath();
 //                shapeSelected = (Shape) selectionPath.getLastPathComponent();
 //                StackOverFlow
@@ -229,21 +231,23 @@ public class Bounce extends JPanel {
                     cutPaste = selection;
                     model.remove(selection);
                     cutPasteShape.setText("AsDelete");
+                    isCut = true;
 
-//                    NestingShape newParent = (NestingShape)shapeSelected;
-//                    StackOverFlow
-
-
-                }
-                if(!((NestingShape)cutPaste).contains(newParent) && cutPaste.x() < newParent.x() && cutPaste.y() < newParent.y()){
-                    cutPasteShape.setText("Paste");
-//                        model.add(shapeToPaste, newParent);
+//!newParent.path().contains(toPaste)  &&
+                    if( cutPaste.x() < newParent.x() && cutPaste.y() < newParent.y()){
+                        cutPasteShape.setText("Paste");
+                        model.add(cutPaste, newParent);
 //                        same as below
-                    newParent.add(cutPaste);
+//                        newParent.add(cutPaste);
+
+                    }
+
 
                 }
+
                 cutPaste = null;
                 cutPasteShape.setText("Cut");
+                isCut = false;
 
 
 
@@ -284,17 +288,19 @@ public class Bounce extends JPanel {
                  *  in the JTree can be cut or pasted
                  */
                 NestingShape root = model.root();
+
                 int index = 0;
 //                NestingShape destination = (NestingShape) selectionPath.getPathComponent(index);
 
                 NestingShape destination = new NestingShape(getX(),getY(),0,0, getWidth(), getHeight());
                 cutPasteShape.setEnabled(shapeSelected != root);
                 if(cutPasteShape.isSelected()){
-//                    cutPasteShape.setText("Paste");
-                    cutPasteShape.setEnabled(!((NestingShape)shapeSelected).contains(destination) &&
+
+//!destination.path().contains(shapeSelected) &&
+                    cutPasteShape.setEnabled(
                             shapeSelected.width() < destination.width() && shapeSelected.height() < destination.height());
                 }
-//                cutPasteShape.setText("Cut");
+//
 
 
 
