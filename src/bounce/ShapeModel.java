@@ -141,6 +141,8 @@ public class ShapeModel {
             remove(shape);
 
             if(!shape.path().contains(newParent) && shape.width() < newParent.width() && shape.height() < newParent.height()){
+//                if(newParent instanceof NestingShape){
+//                Crash!!
 
                 shape.x = newParent.x;
                 shape.y = newParent.y;
