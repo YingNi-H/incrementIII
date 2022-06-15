@@ -138,14 +138,15 @@ public class ShapeModel {
 
         if(shape != root ){
             remove(shape);
-            if(!newParent.contains(shape) && shape.width() <= newParent.width() && shape.height() <= newParent.height()){
+
+        }
+        if(!((NestingShape)shape).contains(newParent) && shape.width() < newParent.width() && shape.height() < newParent.height()){
 //                shape.x >= newParent.x && shape.y >= newParent.y &&
 //                        shape.x + shape.width <= newParent.x + newParent.width &&
 //                        shape.y + shape.height <= newParent.y + newParent.height &&
-                shape.x = newParent.x;
-                shape.y = newParent.y;
-                add(shape, newParent);
-            }
+            shape.x = newParent.x;
+            shape.y = newParent.y;
+            add(shape, newParent);
         }
 
     }
