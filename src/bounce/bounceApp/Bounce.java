@@ -213,44 +213,42 @@ public class Bounce extends JPanel {
 
                 NestingShape root = model.root();
 
-                if(shapeSelected != root){
-                    treeView.setSelectionPath(new TreePath(shapeSelected.parent().path().toArray()));
-                    shapeToPaste = shapeSelected;
-                    model.remove(shapeSelected);
-                    cutPasteShape.setText("Paste");
-                    if(shapeSelected instanceof NestingShape && !shapeToPaste.path().contains(shapeSelected) &&
-                            shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
-                        model.add(shapeToPaste, (NestingShape)shapeSelected);
-                    }
-                    shapeToPaste = null;
-                    cutPasteShape.setText("Cut");
-
-
-                }
-
-//
-//                if(cutPasteShape.getText() == "Cut"){
-//                    if(shapeSelected != root){
-//                        cutPasteShape.setText("Paste");
+//                if(shapeSelected != root){
 //                    treeView.setSelectionPath(new TreePath(shapeSelected.parent().path().toArray()));
 //                    shapeToPaste = shapeSelected;
 //                    model.remove(shapeSelected);
-//
-//                    }
-//
-//                }else{
-//
-////                    !shapeToPaste.path().contains(shapeSelected)
-//                    if(shapeSelected instanceof NestingShape && shapeSelected.parent() != shapeToPaste
-//                        && shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
+//                    cutPasteShape.setText("Paste");
+//                    if(shapeSelected instanceof NestingShape && !shapeToPaste.path().contains(shapeSelected) &&
+//                            shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
 //                        model.add(shapeToPaste, (NestingShape)shapeSelected);
 //                    }
 //                    shapeToPaste = null;
 //                    cutPasteShape.setText("Cut");
 //
+//
 //                }
 
+//
+                if(cutPasteShape.getText() == "Cut"){
+                    if(shapeSelected != root){
+                        treeView.setSelectionPath(new TreePath(shapeSelected.parent().path().toArray()));
+                        shapeToPaste = shapeSelected;
+                        model.remove(shapeSelected);
+                        cutPasteShape.setText("Paste");
 
+                    }
+
+                }else{
+//                    !shapeToPaste.path().contains(shapeSelected)
+//                    shapeSelected.parent() != shapeToPaste
+                    if(shapeSelected instanceof NestingShape && !shapeToPaste.path().contains(shapeSelected)
+                        && shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
+                        model.add(shapeToPaste, (NestingShape)shapeSelected);
+                    }
+                    shapeToPaste = null;
+                    cutPasteShape.setText("Cut");
+
+                }
 
 
             }
