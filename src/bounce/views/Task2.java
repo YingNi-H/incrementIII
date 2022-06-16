@@ -13,16 +13,10 @@ import java.util.List;
  */
 public class Task2 extends Task1 implements ShapeModelListener {
 
-    private ShapeModel adaptee2;
-
-    private List<ShapeModelListener> listeners;
-
-
 
     public Task2(ShapeModel model) {
         super(model);
-        this.adaptee2 = model;
-        this.listeners = new ArrayList<>();
+
     }
 
     @Override

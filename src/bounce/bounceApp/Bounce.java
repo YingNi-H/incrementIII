@@ -210,6 +210,11 @@ public class Bounce extends JPanel {
         cutPasteShape.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Shape selected = shapeSelected;
+//                Shape destination = shapeSelected;
+                NestingShape parent = selected.parent();
+
+
 
                 NestingShape root = model.root();
 
@@ -230,22 +235,28 @@ public class Bounce extends JPanel {
 
 //
                 if(cutPasteShape.getText() == "Cut"){
-                    if(shapeSelected != root){
-                        treeView.setSelectionPath(new TreePath(shapeSelected.parent().path().toArray()));
-                        shapeToPaste = shapeSelected;
-                        model.remove(shapeSelected);
-                        cutPasteShape.setText("Paste");
-
-                    }
+//                    if(shapeSelected != root){
+//                        treeView.setSelectionPath(new TreePath(shapeSelected.parent().path().toArray()));
+//                        shapeToPaste = shapeSelected;
+//                        model.remove(shapeSelected);
+//                        cutPasteShape.setText("Paste");
+//
+//                    }
+                    treeView.setSelectionPath(new TreePath(parent.path().toArray()));
+                    shapeToPaste = selected;
+                    cutPasteShape.setText("Paste");
 
                 }else{
 //                    !shapeToPaste.path().contains(shapeSelected)
 //                    shapeSelected.parent() != shapeToPaste
-                    if(shapeSelected instanceof NestingShape && !shapeToPaste.path().contains(shapeSelected)
-                        && shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
-                        model.add(shapeToPaste, (NestingShape)shapeSelected);
-                    }
-                    shapeToPaste = null;
+//                    if(shapeSelected instanceof NestingShape && !shapeToPaste.path().contains(shapeSelected)
+//                        && shapeToPaste.x() < shapeSelected.x() && shapeToPaste.y() < shapeSelected.y()){
+//                        model.add(shapeToPaste, (NestingShape)shapeSelected);
+//                    }
+
+                    model.add(shapeToPaste, (NestingShape)selected);
+//                    model.remove(shapeToPaste);
+//                    shapeToPaste = null;
                     cutPasteShape.setText("Cut");
 
                 }
@@ -289,16 +300,20 @@ public class Bounce extends JPanel {
                  */
                 NestingShape root = model.root();
                 cutPasteShape.setEnabled(shapeSelected != root );
-                shapeToPaste = shapeSelected;
+//                shapeToPaste = shapeSelected;
+
 
 //                 !shapeToPaste.path().contains(shapeSelected) &&
 //                shapeSelected.parent() != shapeToPaste &&
 
-                if(cutPasteShape.isSelected()){
-                    cutPasteShape.setEnabled(shapeSelected instanceof NestingShape &&
-                            !shapeToPaste.path().contains(shapeSelected) &&
-                            shapeToPaste.width() < shapeSelected.width() && shapeToPaste.height() < shapeSelected.height());
-                }
+                if(cutPasteShape.getText() == "Paste"){
+
+                    cutPasteShape.setEnabled(shapeSelected instanceof NestingShape );}
+
+//                &&
+//                !shapeToPaste.path().contains(shapeSelected) &&
+//                        shapeToPaste.width() < shapeSelected.width() && shapeToPaste.height() < shapeSelected.height()
+
 
 
                 /*

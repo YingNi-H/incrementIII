@@ -20,7 +20,7 @@ public class Task1 implements TreeModel {
     private ShapeModel treeAdaptee;
     NestingShape nestingShape;
     List<TreeModelListener> treeListeners;
-//    private Dimension bounds;
+
 
 
     public Task1(ShapeModel shapeModel) {

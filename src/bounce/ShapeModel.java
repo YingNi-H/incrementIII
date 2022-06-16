@@ -135,22 +135,22 @@ public class ShapeModel {
      */
 
     public void change(Shape shape, NestingShape newParent){
-        Shape toPaste = shape;
+        NestingShape parent = shape.parent();
 
 
         if(shape != root ){
-            remove(shape);
+
 
 //            !shape.path().contains(newParent)
 //            newParent.parent() != shape
 
-            if(!toPaste.path().contains(newParent)  && toPaste.width() < newParent.width() && toPaste.height() < newParent.height()){
+            if(newParent instanceof NestingShape){
 //                if(!shape.path().contains(newParent)  && shape.width() < newParent.width() && shape.height() < newParent.height()){
 
-
-                toPaste.x = newParent.x;
-                toPaste.y = newParent.y;
-                add(toPaste, newParent);
+//                shape.x = newParent.x;
+//                shape.y = newParent.y;
+                add(shape, newParent);
+//              remove(shape);
             }
 
         }
