@@ -34,6 +34,8 @@ public class ImageShapeFormHandler implements FormHandler {
 
 
 
+
+
     public ImageShapeFormHandler(ShapeModel model, NestingShape parent) {
         this.model = model;
         parentOfNewShape = parent;
@@ -47,7 +49,6 @@ public class ImageShapeFormHandler implements FormHandler {
         @Override
         protected Image doInBackground() throws Exception {
 
-            // Read field values from the form.
 
 
 
@@ -65,6 +66,8 @@ public class ImageShapeFormHandler implements FormHandler {
             BufferedImage scaledImage = fullImage;
 
             // Scale the image if necessary.
+
+
             if (fullImageWidth > width) {
                 double scaleFactor = (double) width / (double) fullImageWidth;
                 int height = (int) ((double) fullImageHeight * scaleFactor);
@@ -99,6 +102,7 @@ public class ImageShapeFormHandler implements FormHandler {
                 System.err.println("Error retrieving file: " + why);
             }
             // Create the new Shape and add it to the model.
+
             ImageRectangleShape imageShape = new ImageRectangleShape(deltaX, deltaY, scaledImage);
             model.add(imageShape, parentOfNewShape);
         }
@@ -107,14 +111,11 @@ public class ImageShapeFormHandler implements FormHandler {
     @Override
     public void processForm(Form form) {
         long startTime = System.currentTimeMillis();
+        // Read field values from the form.
         imageFile = (File) form.getFieldValue(File.class, ImageFormElement.IMAGE);
         width = form.getFieldValue(Integer.class, ShapeFormElement.WIDTH);
         deltaX = form.getFieldValue(Integer.class, ShapeFormElement.DELTA_X);
         deltaY = form.getFieldValue(Integer.class, ShapeFormElement.DELTA_Y);
-
-
-
-
 
 
         long elapsedTime = System.currentTimeMillis() - startTime;
