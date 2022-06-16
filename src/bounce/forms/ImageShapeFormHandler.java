@@ -3,6 +3,7 @@ package bounce.forms;
 import bounce.ImageRectangleShape;
 import bounce.NestingShape;
 import bounce.ShapeModel;
+import bounce.bounceApp.Bounce;
 import bounce.forms.util.Form;
 import bounce.forms.util.FormHandler;
 
@@ -39,6 +40,8 @@ public class ImageShapeFormHandler implements FormHandler {
     public ImageShapeFormHandler(ShapeModel model, NestingShape parent) {
         this.model = model;
         parentOfNewShape = parent;
+        this.imageFile = imageFile;
+        this.width = width;
 
 
     }
@@ -48,8 +51,6 @@ public class ImageShapeFormHandler implements FormHandler {
     private SwingWorker<Image, Void> worker = new SwingWorker<Image, Void>() {
         @Override
         protected Image doInBackground() throws Exception {
-
-
 
 
             // Load the original image (ImageIO.read() is a blocking call).
@@ -90,6 +91,7 @@ public class ImageShapeFormHandler implements FormHandler {
             try{
                 scaledImage = get();
 
+
             }catch (InterruptedException ignore) {}
             catch (java.util.concurrent.ExecutionException e) {
                 String why = null;
@@ -110,6 +112,7 @@ public class ImageShapeFormHandler implements FormHandler {
     };
     @Override
     public void processForm(Form form) {
+
         long startTime = System.currentTimeMillis();
         // Read field values from the form.
         imageFile = (File) form.getFieldValue(File.class, ImageFormElement.IMAGE);
@@ -121,6 +124,8 @@ public class ImageShapeFormHandler implements FormHandler {
         long elapsedTime = System.currentTimeMillis() - startTime;
         System.out.println("Image loading ans scaling took " + elapsedTime + "ms.");
     }
+
+
 
 
 }
