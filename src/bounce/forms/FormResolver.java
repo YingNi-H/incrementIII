@@ -14,6 +14,7 @@ package bounce.forms;
 import bounce.*;
 import bounce.forms.util.FormComponent;
 import bounce.forms.util.FormHandler;
+import bounce.forms.util.GemShapeFormHandler;
 
 public class FormResolver {
 
@@ -28,7 +29,7 @@ public class FormResolver {
 		
 		form.addFormElement(new ShapeFormElement());
 		
-		if(shapeClass == DynamicRectangleShape.class) {
+		if(shapeClass == DynamicRectangleShape.class || shapeClass == OvalShape.class || shapeClass == GemShape.class) {
 			form.addFormElement(new ColourFormElement());
 		} else if(shapeClass == ImageRectangleShape.class) {
 			form.addFormElement(new ImageFormElement());
@@ -58,7 +59,16 @@ public class FormResolver {
 			handler = new DynamicRectangleShapeFormHandler(model, parent);
 		} else if(shapeClass == ImageRectangleShape.class) {
 			handler = new ImageShapeFormHandler(model, parent);
-		} else {
+
+		} else if(shapeClass == OvalShape.class) {
+			handler = new OvalShapeFormHandler(model, parent);
+
+		}else if(shapeClass == GemShape.class) {
+			handler = new GemShapeFormHandler(model, parent);
+
+		}
+
+		else {
 			handler = new ShapeFormHandler(shapeClass, model, parent);
 		}
 		

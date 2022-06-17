@@ -61,4 +61,10 @@ public interface Painter {
      * image. Parameters width and height specify its width and height.
      */
     public void drawImage(Image img, int x, int y, int width, int height);
+
+    public void fillPolygon(int[] xPoints, int[] yPoints, int Points);
+
+    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints);
+
+    public void fillOval(int x, int y, int width, int height);
 }

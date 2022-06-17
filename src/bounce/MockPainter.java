@@ -2,6 +2,7 @@ package bounce;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.Arrays;
 
 
 /**
@@ -24,6 +25,20 @@ public class MockPainter implements Painter {
     public void drawRect(int x, int y, int width, int height) {
         log.append("(rectangle " + x + "," + y + "," + width + "," + height + ")");
     }
+
+    @Override
+    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints){
+
+        log.append("(hexagon " + xPoints + "," + yPoints + "," + nPoints + ")");
+
+
+    }
+
+    @Override
+    public void fillOval(int x, int y, int width, int height) {
+        log.append("(oval " + x + "," + y + "," + width + "," + height + ")");
+    }
+
 
     /**
      * @see bounce.Painter.fillRect
@@ -87,5 +102,11 @@ public class MockPainter implements Painter {
      */
     @Override
     public void drawImage(Image img, int x, int y, int width, int height) {
+    }
+
+    @Override
+    public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints){
+        log.append("(polygon " + Arrays.toString(xPoints) + "," + Arrays.toString(yPoints) + "," + nPoints + ")");
+
     }
 }

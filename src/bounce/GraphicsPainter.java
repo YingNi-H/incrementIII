@@ -105,4 +105,22 @@ public class GraphicsPainter implements Painter {
     public void drawImage(Image img, int x, int y, int width, int height) {
         g.drawImage(img, x, y, width, height, null);
     }
+
+    @Override
+    public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints){
+        g.fillPolygon(xPoints, yPoints, nPoints);
+
+
+    }
+
+    @Override
+    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints) {
+        g.drawPolygon(xPoints, yPoints, nPoints);
+    }
+
+
+    @Override
+    public void fillOval(int x, int y, int width, int height) {
+        g.fillOval(x, y, width, height);
+    }
 }
