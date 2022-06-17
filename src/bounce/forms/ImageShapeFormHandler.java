@@ -33,8 +33,7 @@ public class ImageShapeFormHandler implements FormHandler {
 
     private Image scaledImage;
 
-
-
+    private Form form;
 
 
     public ImageShapeFormHandler(ShapeModel model, NestingShape parent) {
@@ -113,12 +112,16 @@ public class ImageShapeFormHandler implements FormHandler {
     @Override
     public void processForm(Form form) {
 
+
         long startTime = System.currentTimeMillis();
         // Read field values from the form.
         imageFile = (File) form.getFieldValue(File.class, ImageFormElement.IMAGE);
         width = form.getFieldValue(Integer.class, ShapeFormElement.WIDTH);
         deltaX = form.getFieldValue(Integer.class, ShapeFormElement.DELTA_X);
         deltaY = form.getFieldValue(Integer.class, ShapeFormElement.DELTA_Y);
+
+        worker.execute();
+
 
 
         long elapsedTime = System.currentTimeMillis() - startTime;
