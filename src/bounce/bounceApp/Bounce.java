@@ -29,7 +29,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import bounce.*;
-import bounce.forms.FormResolver;
+import bounce.forms.util.FormResolver;
 import bounce.forms.util.FormComponent;
 import bounce.forms.util.FormHandler;
 import bounce.views.AnimationView;

@@ -1,20 +1,24 @@
-package bounce.forms.util;
+package bounce.forms;
 
-import bounce.GemShape;
-import bounce.NestingShape;
-import bounce.OvalShape;
-import bounce.ShapeModel;
+import bounce.*;
 import bounce.forms.ColourFormElement;
 import bounce.forms.ShapeFormElement;
+import bounce.RectangleShape;
+import bounce.Shape;
+import bounce.BorderShape;
+import bounce.forms.util.Form;
+import bounce.forms.util.FormHandler;
+
 
 import java.awt.*;
 
-public class GemShapeFormHandler implements FormHandler {
+
+public class BorderShapeFormHandler implements FormHandler {
     private ShapeModel model;
     private NestingShape parentOfNewShape;
 
-    public GemShapeFormHandler(ShapeModel model,
-                               NestingShape parent) {
+    public BorderShapeFormHandler(ShapeModel model,
+                                  NestingShape parent) {
         this.model = model;
         parentOfNewShape = parent;
     }
@@ -27,12 +31,11 @@ public class GemShapeFormHandler implements FormHandler {
         int deltaY = form.getFieldValue(Integer.class, ShapeFormElement.DELTA_Y);
         int width = form.getFieldValue(Integer.class, ShapeFormElement.WIDTH);
         int height = form.getFieldValue(Integer.class, ShapeFormElement.HEIGHT);
-        String text = form.getFieldValue(String.class, ShapeFormElement.TEXT);
-        Color colour = (Color) form
-                .getFieldValue(Color.class, ColourFormElement.COLOUR);
 
-        GemShape newShape = new GemShape(x, y,
-                deltaX, deltaY, width, height, text, colour);
+        Shape shape = new RectangleShape(x, y,
+                deltaX, deltaY, width, height);
+
+        BorderShape newShape = new BorderShape(shape, null  );
         model.add(newShape, parentOfNewShape);
     }
 
