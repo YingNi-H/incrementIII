@@ -10,3 +10,6 @@ Your final project will be marked based on the assessment criteria of each task.
 You submit by ensuring your GitHub repository is up-to-date. We will download your repository for marking on the due date.
 
 Late submissions are not permitted. You will get a mark of zero if your repository does not contain your submission when we download it.
+
+## Instruction
+Please see [Bounce-III](Bounce-III.pdf)
